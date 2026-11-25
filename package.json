@@ -21,7 +21,8 @@
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "json-server": "^0.17.4",
-    "node-fs": "^0.1.7"
+    "node-fs": "^0.1.7",
+    "rimraf": "^6.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,7 +31,7 @@
     "eject": "react-scripts eject",
     "serve": "json-server --watch ./src/server/db/index.js --routes ./src/server/routes.json --port 3001",
     "save-json-api": "node ./src/server/scripts/save-json-api.js",
-    "predeploy": "rm -rf build && npm run build",
+    "predeploy": "rimraf build && npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
