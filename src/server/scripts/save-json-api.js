@@ -1,21 +1,19 @@
 const fs = require('fs');
 const path = require('path');
-const getDb = require('../db');
+// Поднимаемся на 2 уровня вверх от scripts -> server -> db
+const data = require('../db/data.json'); 
 
-const db = getDb();
-// Путь до папки сборки (на 3 уровня выше папки scripts)
 const dir = path.join(__dirname, '../../../build/static/db');
 
-// Создаем папку, если её нет
+// 1. Создаем папку, если её нет
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
-// Записываем файлы
-for (let [key, value] of Object.entries(db)) {
-  fs.writeFileSync(
-    path.join(dir, `${key}.json`),
-    JSON.stringify(value)
-  );
-}
+// 2. Записываем файл data.json
+fs.writeFileSync(
+  path.join(dir, 'data.json'),
+  JSON.stringify(data)
+);
+
 console.log('✅ Данные успешно скопированы в build/static/db/');
